@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head><title>AI Task Planner</title></head>
+<body>
+  <h1>AI Task Planner</h1>
+
+  <form method="POST">
+    <input type="text" name="task_input" placeholder="Enter a task" size="60" required>
+    <button type="submit">Plan it</button>
+  </form>
+
+  {% if result %}
+    <h2>Original Task Input</h2>
+    <p>{{ result.original_input }}</p>
+
+    <h2>Subtasks (Summary)</h2>
+    <p>{{ result.summary }}</p>
+
+    <h2>Classification</h2>
+    <p>{{ result.classification }}</p>
+
+    <h2>Task Priority</h2>
+    <p>{{ result.priority }}</p>
+
+    <h2>Smart Plan</h2>
+    <p>{{ result.smart_plan }}</p>
+  {% endif %}
+</body>
+</html>
