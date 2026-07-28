@@ -6,11 +6,11 @@ from graph.state import PlannerState
 LABELS = ["Work", "Study", "Personal"]
 
 _prompt = PromptTemplate(
-    input_variables=["summary", "labels"],
+    input_variables=["subtasks", "labels"],
     template=(
-        "Classify the following task into exactly one of these categories: "
+        "Classify the following subtasks into exactly one of these categories: "
         "{labels}.\n\nRespond with ONLY the category name.\n\n"
-        "Task:\n{summary}\n\nCategory:"
+        "Subtasks:\n{subtasks}\n\nCategory:"
     ),
 )
 _llm = ChatOpenAI(model=MODEL_NAME, temperature=0)
@@ -18,7 +18,7 @@ _chain = _prompt | _llm
 
 
 def classify_node(state: PlannerState) -> PlannerState:
-    result = _chain.invoke({"summary": state["summary"], "labels": ", ".join(LABELS)})
+    result = _chain.invoke({"subtasks": state["subtasks"], "labels": ", ".join(LABELS)})
     label = result.content.strip()
     if label not in LABELS:
         label = "Personal"  

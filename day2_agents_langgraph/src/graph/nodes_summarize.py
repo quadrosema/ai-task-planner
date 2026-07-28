@@ -6,9 +6,10 @@ from graph.state import PlannerState
 _prompt = PromptTemplate(
     input_variables=["text"],
     template=(
-        "Summarize the following task description in 1-2 concise sentences, "
-        "preserving any specific deadlines or important details.\n\n"
-        "Task:\n{text}\n\nSummary:"
+        "Break the following task down into 2-5 concrete, actionable subtasks. "
+        "Preserve any specific deadlines or important details mentioned. "
+        "Respond as a numbered list, one subtask per line, nothing else.\n\n"
+        "Task:\n{text}\n\nSubtasks:"
     ),
 )
 _llm = ChatOpenAI(model=MODEL_NAME, temperature=0)
@@ -17,4 +18,4 @@ _chain = _prompt | _llm
 
 def summarize_node(state: PlannerState) -> PlannerState:
     result = _chain.invoke({"text": state["original_input"]})
-    return {"summary": result.content}
+    return {"subtasks": result.content}

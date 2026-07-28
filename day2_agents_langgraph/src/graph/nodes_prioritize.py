@@ -28,12 +28,12 @@ _priority_agent = create_react_agent(
 
 def prioritize_node(state: PlannerState) -> PlannerState:
     message = (
-        f"Task summary: {state['summary']}\n"
+        f"Subtasks: {state['subtasks']}\n"
         f"Category: {state['classification']}\n"
         "What is the priority?"
     )
     result = _priority_agent.invoke({"messages": [{"role": "user", "content": message}]})
     priority = result["messages"][-1].content.strip()
     if priority not in ("High", "Medium", "Low"):
-        priority = "Medium"  # safety net
+        priority = "Medium"  
     return {"priority": priority}

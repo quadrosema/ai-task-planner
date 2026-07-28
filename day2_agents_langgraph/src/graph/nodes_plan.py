@@ -4,14 +4,14 @@ from config import MODEL_NAME
 from graph.state import PlannerState
 
 _prompt = PromptTemplate(
-    input_variables=["summary", "classification", "priority"],
+    input_variables=["subtasks", "classification", "priority"],
     template=(
-        "Given this task:\n"
-        "Summary: {summary}\n"
+        "Given these subtasks:\n"
+        "Subtasks: {subtasks}\n"
         "Category: {classification}\n"
         "Priority: {priority}\n\n"
-        "Write a short (2-3 sentence) smart plan suggesting how and when "
-        "the user should approach this task, given its priority."
+        "Write a short smart plan suggesting the order to tackle these subtasks "
+        "in, and roughly when, given the priority level."
     ),
 )
 _llm = ChatOpenAI(model=MODEL_NAME, temperature=0)
@@ -21,7 +21,7 @@ _chain = _prompt | _llm
 def plan_node(state: PlannerState) -> PlannerState:
     result = _chain.invoke(
         {
-            "summary": state["summary"],
+            "subtasks": state["subtasks"],
             "classification": state["classification"],
             "priority": state["priority"],
         }
