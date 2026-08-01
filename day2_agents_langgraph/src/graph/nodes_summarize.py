@@ -16,6 +16,10 @@ _llm = ChatOpenAI(model=MODEL_NAME, temperature=0)
 _chain = _prompt | _llm
 
 
+def generate_subtasks(text: str) -> str:
+    result = _chain.invoke({"text": text})
+    return result.content
+
+
 def summarize_node(state: PlannerState) -> PlannerState:
-    result = _chain.invoke({"text": state["original_input"]})
-    return {"subtasks": result.content}
+    return {"subtasks": generate_subtasks(state["original_input"])}

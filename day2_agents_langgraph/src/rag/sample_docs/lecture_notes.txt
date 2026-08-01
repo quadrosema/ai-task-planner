@@ -1,0 +1,11 @@
+Chapter 1: Introduction to Machine Learning
+
+Machine learning is a subfield of artificial intelligence that focuses on building systems that learn from data rather than being explicitly programmed. There are three main types: supervised learning, where models learn from labeled examples; unsupervised learning, where models find patterns in unlabeled data; and reinforcement learning, where an agent learns by interacting with an environment and receiving rewards or penalties.
+
+Chapter 2: Neural Networks and Deep Learning
+
+Neural networks are computing systems loosely inspired by the structure of biological brains. A neural network consists of layers of interconnected nodes, or neurons, each performing a simple computation. Deep learning refers to neural networks with many layers, which allows them to learn increasingly abstract representations of data. Key architectures include convolutional neural networks (CNNs), which are especially effective for image data, and recurrent neural networks (RNNs), which are suited to sequential data like text or time series. Training a neural network involves adjusting its weights using an algorithm called backpropagation, which computes gradients of a loss function and updates the weights via gradient descent to minimize prediction error over many iterations.
+
+Chapter 3: Natural Language Processing
+
+Natural language processing (NLP) is the field concerned with enabling computers to understand, interpret, and generate human language. Modern NLP is dominated by transformer-based models, which use a mechanism called self-attention to weigh the importance of different words in a sentence relative to each other. Large language models, trained on massive text corpora, have significantly advanced tasks such as translation, summarization, and question answering.

@@ -25,3 +25,11 @@ def run_planner(task_input: str) -> PlannerState:
     """Run the full graph on a raw task input and return the final state."""
     result = planner_graph.invoke({"original_input": task_input})
     return result
+
+
+def finalize_plan(original_input: str, approved_subtasks: str) -> PlannerState:
+    state: PlannerState = {"original_input": original_input, "subtasks": approved_subtasks}
+    state.update(classify_node(state))
+    state.update(prioritize_node(state))
+    state.update(plan_node(state))
+    return state

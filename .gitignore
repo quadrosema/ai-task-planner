@@ -216,3 +216,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+day2_agents_langgraph/src/rag/uploads/
+day2_agents_langgraph/src/memory/persistent_memory.json
